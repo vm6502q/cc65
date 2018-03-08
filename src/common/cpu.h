@@ -57,6 +57,7 @@ typedef enum {
     CPU_HUC6280,                /* Used in PC engine */
     CPU_M740,                   /* Mitsubishi 740 series MCUs */
     CPU_4510,                   /* CPU of C65 */
+    CPU_6502Q,                  /* 6502 with Quantum Extension */
     CPU_COUNT                   /* Number of different CPUs */
 } cpu_t;
 
@@ -72,6 +73,7 @@ enum {
     CPU_ISET_HUC6280    = 1 << CPU_HUC6280,
     CPU_ISET_M740       = 1 << CPU_M740,
     CPU_ISET_4510       = 1 << CPU_4510,
+    CPU_ISET_6502Q      = 1 << CPU_6502Q,
 };
 
 /* CPU used */

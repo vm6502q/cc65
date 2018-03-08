@@ -126,6 +126,10 @@ typedef enum {
     OP65_TXS,
     OP65_TYA,
 
+    OP65_HADA,
+    OP65_HADX,
+    OP65_HADY,
+
     /* Number of opcodes available */
     OP65_COUNT
 } opc_t;

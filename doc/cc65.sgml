@@ -79,7 +79,7 @@ Long options:
   --check-stack                 Generate stack overflow checks
   --code-name seg               Set the name of the CODE segment
   --codesize x                  Accept larger code by factor x
-  --cpu type                    Set cpu type (6502, 65c02)
+  --cpu type                    Set cpu type (6502, 65c02, 65c02q)
   --create-dep name             Create a make dependency file
   --create-full-dep name        Create a full make dependency file
   --data-name seg               Set the name of the DATA segment

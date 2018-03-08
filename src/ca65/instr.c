@@ -922,7 +922,106 @@ static const struct {
     }
 };
 
+/* Instruction table for the 6502Q */
+static const struct {
+    unsigned Count;
+    InsDesc  Ins[59];
+} InsTab6502Q = {
+    sizeof (InsTab6502Q.Ins) / sizeof (InsTab6502Q.Ins[0]),
+    {
+        { "ADC",  0x080A26C, 0x60, 0, PutAll },
+        { "AND",  0x080A26C, 0x20, 0, PutAll },
+        { "ASL",  0x000006e, 0x02, 1, PutAll },
+        { "BCC",  0x0020000, 0x90, 0, PutPCRel8 },
+        { "BCS",  0x0020000, 0xb0, 0, PutPCRel8 },
+        { "BEQ",  0x0020000, 0xf0, 0, PutPCRel8 },
+        { "BIT",  0x000000C, 0x00, 2, PutAll },
+        { "BMI",  0x0020000, 0x30, 0, PutPCRel8 },
+        { "BNE",  0x0020000, 0xd0, 0, PutPCRel8 },
+        { "BPL",  0x0020000, 0x10, 0, PutPCRel8 },
+        { "BRK",  0x0000001, 0x00, 0, PutAll },
+        { "BVC",  0x0020000, 0x50, 0, PutPCRel8 },
+        { "BVS",  0x0020000, 0x70, 0, PutPCRel8 },
+        { "CLC",  0x0000001, 0x18, 0, PutAll },
+        { "CLD",  0x0000001, 0xd8, 0, PutAll },
+        { "CLI",  0x0000001, 0x58, 0, PutAll },
+        { "CLV",  0x0000001, 0xb8, 0, PutAll },
+        { "CMP",  0x080A26C, 0xc0, 0, PutAll },
+        { "CPX",  0x080000C, 0xe0, 1, PutAll },
+        { "CPY",  0x080000C, 0xc0, 1, PutAll },
+        { "DEC",  0x000006C, 0x00, 3, PutAll },
+        { "DEX",  0x0000001, 0xca, 0, PutAll },
+        { "DEY",  0x0000001, 0x88, 0, PutAll },
+        { "EOR",  0x080A26C, 0x40, 0, PutAll },
+        { "HADA", 0x0000001, 0x02, 0, PutAll },     /* Q */
+        { "HADX", 0x0000001, 0x03, 0, PutAll },     /* Q */
+        { "HADY", 0x0000001, 0x04, 0, PutAll },     /* Q */
+        { "INC",  0x000006c, 0x00, 4, PutAll },
+        { "INX",  0x0000001, 0xe8, 0, PutAll },
+        { "INY",  0x0000001, 0xc8, 0, PutAll },
+        { "JMP",  0x0000808, 0x4c, 6, PutJMP },
+        { "JSR",  0x0000008, 0x20, 7, PutAll },
+        { "LDA",  0x080A26C, 0xa0, 0, PutAll },
+        { "LDX",  0x080030C, 0xa2, 1, PutAll },
+        { "LDY",  0x080006C, 0xa0, 1, PutAll },
+        { "LSR",  0x000006F, 0x42, 1, PutAll },
+        { "NOP",  0x0000001, 0xea, 0, PutAll },
+        { "ORA",  0x080A26C, 0x00, 0, PutAll },
+        { "PHA",  0x0000001, 0x48, 0, PutAll },
+        { "PHP",  0x0000001, 0x08, 0, PutAll },
+        { "PLA",  0x0000001, 0x68, 0, PutAll },
+        { "PLP",  0x0000001, 0x28, 0, PutAll },
+        { "ROL",  0x000006F, 0x22, 1, PutAll },
+        { "ROR",  0x000006F, 0x62, 1, PutAll },
+        { "RTI",  0x0000001, 0x40, 0, PutAll },
+        { "RTS",  0x0000001, 0x60, 0, PutAll },
+        { "SBC",  0x080A26C, 0xe0, 0, PutAll },
+        { "SEC",  0x0000001, 0x38, 0, PutAll },
+        { "SED",  0x0000001, 0xf8, 0, PutAll },
+        { "SEI",  0x0000001, 0x78, 0, PutAll },
+        { "STA",  0x000A26C, 0x80, 0, PutAll },
+        { "STX",  0x000010c, 0x82, 1, PutAll },
+        { "STY",  0x000002c, 0x80, 1, PutAll },
+        { "TAX",  0x0000001, 0xaa, 0, PutAll },
+        { "TAY",  0x0000001, 0xa8, 0, PutAll },
+        { "TSX",  0x0000001, 0xba, 0, PutAll },
+        { "TXA",  0x0000001, 0x8a, 0, PutAll },
+        { "TXS",  0x0000001, 0x9a, 0, PutAll },
+        { "TYA",  0x0000001, 0x98, 0, PutAll },
 
+#if 0
+	OPCODE_HAD_A		= 0x02,	// 65C02Q: Hadamard Accumulator
+	OPCODE_HAD_X		= 0x03,	// 65C02Q: Hadamard IndX
+	OPCODE_HAD_Y		= 0x04,	// 65C02Q: Hadamard Y
+	OPCODE_HAD_O		= 0x07,	// 65C02Q: Hadamard Oracle
+	OPCODE_PAX_A		= 0x12,	// 65C02Q: Pauli X on Accumulator
+	OPCODE_PAX_X		= 0x13,	// 65C02Q: Pauli X on Immediate
+	OPCODE_PAX_O		= 0x14,	// 65C02Q: Pauli X on Oracle Flag
+	OPCODE_HAD_C		= 0x17,	// 65C02Q: Hadamard on Carry Flag
+	OPCODE_PAY_A		= 0x1A,	// 65C02Q: Pauli Y on Accumulator
+	OPCODE_PAY_X		= 0x1B,	// 65C02Q: Pauli Y on Immediate
+	OPCODE_CLO			= 0x1F,	// 65C02Q: Clear Oracle Qubit
+	OPCODE_PAZ_A		= 0x32,	// 65C02Q: Pauli Z on Accumulator
+	OPCODE_PAZ_X		= 0x33,	// 65C02Q: Pauli Z on Immediate
+	OPCODE_ROT_A		= 0x3A,	// 65C02Q: Quarter rotation on |1> axis for Accumulator
+	OPCODE_ROT_X		= 0x3B,	// 65C02Q: Quarter rotation on |1> axis for Immediate
+	OPCODE_SEO		= 0x3F,	// 65C02Q: Set Oracle Flag
+	OPCODE_ROTX_A		= 0x42,	// 65C02Q: Quarter rotation on X axis for Accumulator
+	OPCODE_ROTX_X		= 0x43,	// 65C02Q: Quarter rotation on X axis for Immediate
+	OPCODE_ROTY_A		= 0x52,	// 65C02Q: Quarter rotation on Y axis for Accumulator
+	OPCODE_ROTY_X		= 0x53,	// 65C02Q: Quarter rotation on Y axis for Immediate
+	OPCODE_ROTZ_A		= 0x5A,	// 65C02Q: Quarter rotation on Z axis for Accumulator
+	OPCODE_ROTZ_X		= 0x5B,	// 65C02Q: Quarter rotation on Z axis for Immediate
+	OPCODE_QFT_A		= 0x62,	// 65C02Q: Quantum Fourier Transform on Accumulator
+	OPCODE_QFT_X		= 0x63,	// 65C02Q: Quantum Fourier Transform on Immediate
+	OPCODE_OCN_Z		= 0xF7,	// 65C02Q: CNot the oracle qubit with control: zero flag
+	OPCODE_OCN_S		= 0xFA,	// 65C02Q: CNot the oracle qubit with control: sign flag
+	OPCODE_OCN_C		= 0xFB,	// 65C02Q: CNot the oracle qubit with control: carry flag
+	OPCODE_OCN_O		= 0xFC,	// 65C02Q: CNot the oracle qubit with control: overflow flag
+	// FLAGS_ORACLE		= 0x20,		// 5: 65C02Q: Oracle Qubit Flag
+#endif
+    }
+};
 
 /* An array with instruction tables */
 static const InsTable* InsTabs[CPU_COUNT] = {
@@ -936,6 +1035,7 @@ static const InsTable* InsTabs[CPU_COUNT] = {
     (const InsTable*) &InsTabHuC6280,
     0,                                  /* Mitsubishi 740 */
     (const InsTable*) &InsTab4510,
+    (const InsTable*) &InsTab6502Q,
 };
 const InsTable* InsTab = (const InsTable*) &InsTab6502;
 

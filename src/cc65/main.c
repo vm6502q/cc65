@@ -109,7 +109,7 @@ static void Usage (void)
             "  --check-stack\t\t\tGenerate stack overflow checks\n"
             "  --code-name seg\t\tSet the name of the CODE segment\n"
             "  --codesize x\t\t\tAccept larger code by factor x\n"
-            "  --cpu type\t\t\tSet cpu type (6502, 65c02)\n"
+            "  --cpu type\t\t\tSet cpu type (6502, 65c02, 65c02q)\n"
             "  --create-dep name\t\tCreate a make dependency file\n"
             "  --create-full-dep name\tCreate a full make dependency file\n"
             "  --data-name seg\t\tSet the name of the DATA segment\n"
@@ -454,7 +454,8 @@ static void OptCPU (const char* Opt, const char* Arg)
     /* Find the CPU from the given name */
     CPU = FindCPU (Arg);
     if (CPU != CPU_6502 && CPU != CPU_6502X && CPU != CPU_65SC02 &&
-        CPU != CPU_65C02 && CPU != CPU_65816 && CPU != CPU_HUC6280) {
+        CPU != CPU_65C02 && CPU != CPU_65816 && CPU != CPU_HUC6280 &&
+        CPU != CPU_6502Q) {
         AbEnd ("Invalid argument for %s: `%s'", Opt, Arg);
     }
 }

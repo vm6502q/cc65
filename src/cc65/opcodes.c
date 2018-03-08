@@ -579,6 +579,27 @@ const OPCDesc OPCTable[OP65_COUNT] = {
         REG_A,                                  /* chg */
         OF_XFR | OF_SETF                        /* flags */
     },
+    {   OP65_HADA,                              /* opcode */
+        "hada",                                 /* mnemonic */
+        1,                                      /* size */
+        REG_A,                                  /* use */
+        REG_A,                                  /* chg */
+        OF_NONE                                 /* flags */
+    },
+    {   OP65_HADX,                              /* opcode */
+        "hadx",                                 /* mnemonic */
+        1,                                      /* size */
+        REG_X,                                  /* use */
+        REG_X,                                  /* chg */
+        OF_NONE                                 /* flags */
+    },
+    {   OP65_HADY,                              /* opcode */
+        "hady",                                 /* mnemonic */
+        1,                                      /* size */
+        REG_Y,                                  /* use */
+        REG_Y,                                  /* chg */
+        OF_NONE                                 /* flags */
+    },
 };
 
 
