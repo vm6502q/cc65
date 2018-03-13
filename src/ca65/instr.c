@@ -925,7 +925,7 @@ static const struct {
 /* Instruction table for the 6502Q */
 static const struct {
     unsigned Count;
-    InsDesc  Ins[59];
+    InsDesc  Ins[64];
 } InsTab6502Q = {
     sizeof (InsTab6502Q.Ins) / sizeof (InsTab6502Q.Ins[0]),
     {
@@ -945,7 +945,9 @@ static const struct {
         { "CLC",  0x0000001, 0x18, 0, PutAll },
         { "CLD",  0x0000001, 0xd8, 0, PutAll },
         { "CLI",  0x0000001, 0x58, 0, PutAll },
+        { "CLQ",  0x0000001, 0x1f, 0, PutAll },     /* Q */
         { "CLV",  0x0000001, 0xb8, 0, PutAll },
+        { "CLZ",  0x0000001, 0x47, 0, PutAll },     /* Q */
         { "CMP",  0x080A26C, 0xc0, 0, PutAll },
         { "CPX",  0x080000C, 0xe0, 1, PutAll },
         { "CPY",  0x080000C, 0xc0, 1, PutAll },
@@ -953,9 +955,9 @@ static const struct {
         { "DEX",  0x0000001, 0xca, 0, PutAll },
         { "DEY",  0x0000001, 0x88, 0, PutAll },
         { "EOR",  0x080A26C, 0x40, 0, PutAll },
-        { "HADA", 0x0000001, 0x02, 0, PutAll },     /* Q */
-        { "HADX", 0x0000001, 0x03, 0, PutAll },     /* Q */
-        { "HADY", 0x0000001, 0x04, 0, PutAll },     /* Q */
+        { "HAA",  0x0000001, 0x02, 0, PutAll },     /* Q */
+        { "HAX",  0x0000001, 0x03, 0, PutAll },     /* Q */
+        { "HAY",  0x0000001, 0x04, 0, PutAll },     /* Q */
         { "INC",  0x000006c, 0x00, 4, PutAll },
         { "INX",  0x0000001, 0xe8, 0, PutAll },
         { "INY",  0x0000001, 0xc8, 0, PutAll },
@@ -971,6 +973,7 @@ static const struct {
         { "PHP",  0x0000001, 0x08, 0, PutAll },
         { "PLA",  0x0000001, 0x68, 0, PutAll },
         { "PLP",  0x0000001, 0x28, 0, PutAll },
+        { "QZZ",  0x0000001, 0xf7, 0, PutAll },     /* Q */
         { "ROL",  0x000006F, 0x22, 1, PutAll },
         { "ROR",  0x000006F, 0x62, 1, PutAll },
         { "RTI",  0x0000001, 0x40, 0, PutAll },
@@ -979,6 +982,8 @@ static const struct {
         { "SEC",  0x0000001, 0x38, 0, PutAll },
         { "SED",  0x0000001, 0xf8, 0, PutAll },
         { "SEI",  0x0000001, 0x78, 0, PutAll },
+        { "SEQ",  0x0000001, 0x3f, 0, PutAll },     /* Q */
+        { "SEZ",  0x0000001, 0x2b, 0, PutAll },     /* Q */
         { "STA",  0x000A26C, 0x80, 0, PutAll },
         { "STX",  0x000010c, 0x82, 1, PutAll },
         { "STY",  0x000002c, 0x80, 1, PutAll },
