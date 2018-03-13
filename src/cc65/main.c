@@ -109,7 +109,7 @@ static void Usage (void)
             "  --check-stack\t\t\tGenerate stack overflow checks\n"
             "  --code-name seg\t\tSet the name of the CODE segment\n"
             "  --codesize x\t\t\tAccept larger code by factor x\n"
-            "  --cpu type\t\t\tSet cpu type (6502, 65c02, 65c02q)\n"
+            "  --cpu type\t\t\tSet cpu type (6502, 65c02, 6502q)\n"
             "  --create-dep name\t\tCreate a make dependency file\n"
             "  --create-full-dep name\tCreate a full make dependency file\n"
             "  --data-name seg\t\tSet the name of the DATA segment\n"

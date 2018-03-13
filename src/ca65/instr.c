@@ -990,35 +990,35 @@ static const struct {
         { "TYA",  0x0000001, 0x98, 0, PutAll },
 
 #if 0
-	OPCODE_HAD_A		= 0x02,	// 65C02Q: Hadamard Accumulator
-	OPCODE_HAD_X		= 0x03,	// 65C02Q: Hadamard IndX
-	OPCODE_HAD_Y		= 0x04,	// 65C02Q: Hadamard Y
-	OPCODE_HAD_O		= 0x07,	// 65C02Q: Hadamard Oracle
-	OPCODE_PAX_A		= 0x12,	// 65C02Q: Pauli X on Accumulator
-	OPCODE_PAX_X		= 0x13,	// 65C02Q: Pauli X on Immediate
-	OPCODE_PAX_O		= 0x14,	// 65C02Q: Pauli X on Oracle Flag
-	OPCODE_HAD_C		= 0x17,	// 65C02Q: Hadamard on Carry Flag
-	OPCODE_PAY_A		= 0x1A,	// 65C02Q: Pauli Y on Accumulator
-	OPCODE_PAY_X		= 0x1B,	// 65C02Q: Pauli Y on Immediate
-	OPCODE_CLO			= 0x1F,	// 65C02Q: Clear Oracle Qubit
-	OPCODE_PAZ_A		= 0x32,	// 65C02Q: Pauli Z on Accumulator
-	OPCODE_PAZ_X		= 0x33,	// 65C02Q: Pauli Z on Immediate
-	OPCODE_ROT_A		= 0x3A,	// 65C02Q: Quarter rotation on |1> axis for Accumulator
-	OPCODE_ROT_X		= 0x3B,	// 65C02Q: Quarter rotation on |1> axis for Immediate
-	OPCODE_SEO		= 0x3F,	// 65C02Q: Set Oracle Flag
-	OPCODE_ROTX_A		= 0x42,	// 65C02Q: Quarter rotation on X axis for Accumulator
-	OPCODE_ROTX_X		= 0x43,	// 65C02Q: Quarter rotation on X axis for Immediate
-	OPCODE_ROTY_A		= 0x52,	// 65C02Q: Quarter rotation on Y axis for Accumulator
-	OPCODE_ROTY_X		= 0x53,	// 65C02Q: Quarter rotation on Y axis for Immediate
-	OPCODE_ROTZ_A		= 0x5A,	// 65C02Q: Quarter rotation on Z axis for Accumulator
-	OPCODE_ROTZ_X		= 0x5B,	// 65C02Q: Quarter rotation on Z axis for Immediate
-	OPCODE_QFT_A		= 0x62,	// 65C02Q: Quantum Fourier Transform on Accumulator
-	OPCODE_QFT_X		= 0x63,	// 65C02Q: Quantum Fourier Transform on Immediate
-	OPCODE_OCN_Z		= 0xF7,	// 65C02Q: CNot the oracle qubit with control: zero flag
-	OPCODE_OCN_S		= 0xFA,	// 65C02Q: CNot the oracle qubit with control: sign flag
-	OPCODE_OCN_C		= 0xFB,	// 65C02Q: CNot the oracle qubit with control: carry flag
-	OPCODE_OCN_O		= 0xFC,	// 65C02Q: CNot the oracle qubit with control: overflow flag
-	// FLAGS_ORACLE		= 0x20,		// 5: 65C02Q: Oracle Qubit Flag
+	OPCODE_HAD_A		= 0x02,	// 6502Q: Hadamard Accumulator
+	OPCODE_HAD_X		= 0x03,	// 6502Q: Hadamard IndX
+	OPCODE_HAD_Y		= 0x04,	// 6502Q: Hadamard Y
+	OPCODE_HAD_O		= 0x07,	// 6502Q: Hadamard Oracle
+	OPCODE_PAX_A		= 0x12,	// 6502Q: Pauli X on Accumulator
+	OPCODE_PAX_X		= 0x13,	// 6502Q: Pauli X on Immediate
+	OPCODE_PAX_O		= 0x14,	// 6502Q: Pauli X on Oracle Flag
+	OPCODE_HAD_C		= 0x17,	// 6502Q: Hadamard on Carry Flag
+	OPCODE_PAY_A		= 0x1A,	// 6502Q: Pauli Y on Accumulator
+	OPCODE_PAY_X		= 0x1B,	// 6502Q: Pauli Y on Immediate
+	OPCODE_CLO			= 0x1F,	// 6502Q: Clear Oracle Qubit
+	OPCODE_PAZ_A		= 0x32,	// 6502Q: Pauli Z on Accumulator
+	OPCODE_PAZ_X		= 0x33,	// 6502Q: Pauli Z on Immediate
+	OPCODE_ROT_A		= 0x3A,	// 6502Q: Quarter rotation on |1> axis for Accumulator
+	OPCODE_ROT_X		= 0x3B,	// 6502Q: Quarter rotation on |1> axis for Immediate
+	OPCODE_SEO		= 0x3F,	// 6502Q: Set Oracle Flag
+	OPCODE_ROTX_A		= 0x42,	// 6502Q: Quarter rotation on X axis for Accumulator
+	OPCODE_ROTX_X		= 0x43,	// 6502Q: Quarter rotation on X axis for Immediate
+	OPCODE_ROTY_A		= 0x52,	// 6502Q: Quarter rotation on Y axis for Accumulator
+	OPCODE_ROTY_X		= 0x53,	// 6502Q: Quarter rotation on Y axis for Immediate
+	OPCODE_ROTZ_A		= 0x5A,	// 6502Q: Quarter rotation on Z axis for Accumulator
+	OPCODE_ROTZ_X		= 0x5B,	// 6502Q: Quarter rotation on Z axis for Immediate
+	OPCODE_QFT_A		= 0x62,	// 6502Q: Quantum Fourier Transform on Accumulator
+	OPCODE_QFT_X		= 0x63,	// 6502Q: Quantum Fourier Transform on Immediate
+	OPCODE_OCN_Z		= 0xF7,	// 6502Q: CNot the oracle qubit with control: zero flag
+	OPCODE_OCN_S		= 0xFA,	// 6502Q: CNot the oracle qubit with control: sign flag
+	OPCODE_OCN_C		= 0xFB,	// 6502Q: CNot the oracle qubit with control: carry flag
+	OPCODE_OCN_O		= 0xFC,	// 6502Q: CNot the oracle qubit with control: overflow flag
+	// FLAGS_ORACLE		= 0x20,		// 5: 6502Q: Oracle Qubit Flag
 #endif
     }
 };
