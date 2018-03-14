@@ -925,7 +925,7 @@ static const struct {
 /* Instruction table for the 6502Q */
 static const struct {
     unsigned Count;
-    InsDesc  Ins[64];
+    InsDesc  Ins[66];
 } InsTab6502Q = {
     sizeof (InsTab6502Q.Ins) / sizeof (InsTab6502Q.Ins[0]),
     {
@@ -945,6 +945,7 @@ static const struct {
         { "CLC",  0x0000001, 0x18, 0, PutAll },
         { "CLD",  0x0000001, 0xd8, 0, PutAll },
         { "CLI",  0x0000001, 0x58, 0, PutAll },
+        { "CLN",  0x0000001, 0x2f, 0, PutAll },     /* Q */
         { "CLQ",  0x0000001, 0x1f, 0, PutAll },     /* Q */
         { "CLV",  0x0000001, 0xb8, 0, PutAll },
         { "CLZ",  0x0000001, 0x47, 0, PutAll },     /* Q */
@@ -954,6 +955,7 @@ static const struct {
         { "DEC",  0x000006C, 0x00, 3, PutAll },
         { "DEX",  0x0000001, 0xca, 0, PutAll },
         { "DEY",  0x0000001, 0x88, 0, PutAll },
+        { "EHX",  0x0000001, 0x0b, 0, PutAll },     /* Q */
         { "EOR",  0x080A26C, 0x40, 0, PutAll },
         { "HAA",  0x0000001, 0x02, 0, PutAll },     /* Q */
         { "HAX",  0x0000001, 0x03, 0, PutAll },     /* Q */
@@ -992,13 +994,14 @@ static const struct {
         { "TSX",  0x0000001, 0xba, 0, PutAll },
         { "TXA",  0x0000001, 0x8a, 0, PutAll },
         { "TXS",  0x0000001, 0x9a, 0, PutAll },
-        { "TYA",  0x0000001, 0x98, 0, PutAll },
+        { "TYA",  0x0000001, 0x98, 0, PutAll },     /* Q */
 
 #if 0
 	OPCODE_HAD_A		= 0x02,	// 6502Q: Hadamard Accumulator
 	OPCODE_HAD_X		= 0x03,	// 6502Q: Hadamard IndX
 	OPCODE_HAD_Y		= 0x04,	// 6502Q: Hadamard Y
 	OPCODE_HAD_O		= 0x07,	// 6502Q: Hadamard Oracle
+	OPCODE_EHX		= 0x0b, // 6502Q: "Entangled Hadamard"
 	OPCODE_PAX_A		= 0x12,	// 6502Q: Pauli X on Accumulator
 	OPCODE_PAX_X		= 0x13,	// 6502Q: Pauli X on Immediate
 	OPCODE_PAX_O		= 0x14,	// 6502Q: Pauli X on Oracle Flag
