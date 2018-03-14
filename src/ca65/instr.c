@@ -954,6 +954,7 @@ static const struct {
         { "DEC",  0x000006C, 0x00, 3, PutAll },
         { "DEX",  0x0000001, 0xca, 0, PutAll },
         { "DEY",  0x0000001, 0x88, 0, PutAll },
+        { "EHX",  0x0000001, 0x0b, 0, PutAll },
         { "EOR",  0x080A26C, 0x40, 0, PutAll },
         { "HAA",  0x0000001, 0x02, 0, PutAll },     /* Q */
         { "HAX",  0x0000001, 0x03, 0, PutAll },     /* Q */
