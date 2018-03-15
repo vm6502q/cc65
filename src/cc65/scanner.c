@@ -1000,6 +1000,11 @@ void NextToken (void)
             SetTok (TOK_COMP);
             break;
 
+        /* Quantum Operators */
+        case '@':
+            SetTok (TOK_GROVER);
+            break;
+
         default:
             UnknownChar (CurC);
 

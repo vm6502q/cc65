@@ -181,7 +181,10 @@ typedef enum token_t {
     TOK_AX,
     TOK_EAX,
 
-    TOK_PRAGMA
+    TOK_PRAGMA,
+
+    /* Quantum operators */
+    TOK_GROVER,
 } token_t;
 
 

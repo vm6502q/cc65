@@ -1276,6 +1276,37 @@ static void StructRef (ExprDesc* Expr)
 
 }
 
+static void GroverOp (ExprDesc* Expr)
+/* Perform a quantum Grover search */
+{
+    unsigned Flags;
+
+    // Always pass a pointer and an integer.
+    int ParamSize = sizeofarg(CF_PTR) + sizeofarg(CF_INT);
+
+    // Store the pointer as the already-parsed value in Expr.
+    Flags = CF_NONE;
+    Expr->Type = PtrConversion (Expr->Type);
+    LoadExpr(Expr->Flags, Expr);
+    Flags |= TypeOf (Expr->Type);
+    g_push (Flags, Expr->IVal);
+
+    // Skip the '@'
+    NextToken ();
+
+    // Parse the RHS of the operator
+    hie1(Expr);
+
+    // Store the int to search for, on the stack
+    Flags = CF_NONE;
+    Expr->Type = IntPromotion(Expr->Type);
+    LoadExpr(Expr->Flags, Expr);
+    Flags |= TypeOf (Expr->Type);
+    g_push (Flags, Expr->IVal);
+
+    // Call the 'groversearch' function
+    g_call(CF_FIXARGC, "groversearch", ParamSize);
+}
 
 
 static void hie11 (ExprDesc *Expr)
@@ -1289,7 +1320,8 @@ static void hie11 (ExprDesc *Expr)
 
     /* Check for a rhs */
     while (CurTok.Tok == TOK_LBRACK || CurTok.Tok == TOK_LPAREN ||
-           CurTok.Tok == TOK_DOT    || CurTok.Tok == TOK_PTR_REF) {
+           CurTok.Tok == TOK_DOT    || CurTok.Tok == TOK_PTR_REF ||
+           CurTok.Tok == TOK_GROVER) {
 
         switch (CurTok.Tok) {
 
@@ -1332,6 +1364,10 @@ static void hie11 (ExprDesc *Expr)
                 StructRef (Expr);
                 break;
 
+            case TOK_GROVER:
+                Warning ("hiell: Grover Attempt");
+                GroverOp (Expr);
+                break;
             default:
                 Internal ("Invalid token in hie11: %d", CurTok.Tok);
 
