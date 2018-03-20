@@ -1276,13 +1276,33 @@ static void StructRef (ExprDesc* Expr)
 
 }
 
+/* Share the search value between calls of GroverCalibrateOp and GroverOp. */
+static ExprDesc groverCalibrationExpr;
+
+static void GroverCalibrateOp (ExprDesc* Expr)
+/* Perform a quantum Grover search */
+{
+    memset(&groverCalibrationExpr, 0, sizeof(groverCalibrationExpr));
+
+    /* Skip the calibration operator */
+    NextToken ();
+
+    hie1 (&groverCalibrationExpr);
+
+    /* Skip the comma operator */
+    NextToken ();
+
+    /* Perform the Grover operation */
+    hie1 (Expr);
+}
+
 static void GroverOp (ExprDesc* Expr)
 /* Perform a quantum Grover search */
 {
     unsigned Flags;
 
-    // Always pass a pointer and an integer.
-    int ParamSize = sizeofarg(CF_PTR) + sizeofarg(CF_INT);
+    // Always pass a pointer and two integers, for the 'm' and lookup value.
+    int ParamSize = sizeofarg(CF_INT) + sizeofarg(CF_PTR) + sizeofarg(CF_INT);
 
     // Store the pointer as the already-parsed value in Expr.
     Flags = CF_NONE;
@@ -1304,8 +1324,21 @@ static void GroverOp (ExprDesc* Expr)
     Flags |= TypeOf (Expr->Type);
     g_push (Flags, Expr->IVal);
 
+    // Store the 'm' value for the grover search
+    if (groverCalibrationExpr.Type != NULL) {
+        Flags = CF_NONE;
+        groverCalibrationExpr.Type = IntPromotion(groverCalibrationExpr.Type);
+        LoadExpr(groverCalibrationExpr.Flags, &groverCalibrationExpr);
+        Flags |= TypeOf (groverCalibrationExpr.Type);
+        g_push (Flags, groverCalibrationExpr.IVal);
+    } else {
+        g_push (CF_CONST | CF_CHAR, 1);
+    }
+
     // Call the 'groversearch' function
     g_call(CF_FIXARGC, "groversearch", ParamSize);
+
+    memset(&groverCalibrationExpr, 0, sizeof(groverCalibrationExpr));
 }
 
 
@@ -1315,13 +1348,16 @@ static void hie11 (ExprDesc *Expr)
     /* Name value used in invalid function calls */
     static const char IllegalFunc[] = "illegal_function_call";
 
-    /* Evaluate the lhs */
-    Primary (Expr);
+    if (CurTok.Tok != TOK_GROVER_CALIBRATE) {
+        /* Evaluate the lhs */
+        Primary (Expr);
+    }
 
     /* Check for a rhs */
     while (CurTok.Tok == TOK_LBRACK || CurTok.Tok == TOK_LPAREN ||
            CurTok.Tok == TOK_DOT    || CurTok.Tok == TOK_PTR_REF ||
-           CurTok.Tok == TOK_GROVER) {
+           CurTok.Tok == TOK_GROVER || CurTok.Tok == TOK_GROVER_CALIBRATE ||
+           CurTok.Tok == TOK_QUANTUM_ADD || CurTok.Tok == TOK_QUANTUM_SUB) {
 
         switch (CurTok.Tok) {
 
@@ -1365,8 +1401,18 @@ static void hie11 (ExprDesc *Expr)
                 break;
 
             case TOK_GROVER:
-                Warning ("hiell: Grover Attempt");
+                Warning ("hiell: Grover");
                 GroverOp (Expr);
+                break;
+            case TOK_GROVER_CALIBRATE:
+                Warning ("hiell: Grover Calibration");
+                GroverCalibrateOp (Expr);
+                break;
+            case TOK_QUANTUM_ADD:
+                Warning ("hiell: Quantum Add");
+                break;
+            case TOK_QUANTUM_SUB:
+                Warning ("hiell: Quantum SUB");
                 break;
             default:
                 Internal ("Invalid token in hie11: %d", CurTok.Tok);

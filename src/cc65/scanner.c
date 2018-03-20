@@ -1002,7 +1002,29 @@ void NextToken (void)
 
         /* Quantum Operators */
         case '@':
-            SetTok (TOK_GROVER);
+            NextChar ();
+            if (CurC == '[') {
+                NextChar ();
+                if (CurC == ']') {
+                    /* Skip any whitespace... */
+                    do {
+                        NextChar ();
+                    } while (IsSpace (CurC));
+                    if (CurC == '=') {
+                        SetTok (TOK_GROVER_CALIBRATE);
+                    } else {
+                        NextTok.Tok = TOK_GROVER;
+                    }
+                } else {
+                    UnknownChar (CurC);
+                }
+            } else if (CurC == '+') {
+                SetTok (TOK_QUANTUM_ADD);
+            } else if (CurC == '-') {
+                SetTok (TOK_QUANTUM_SUB);
+            } else {
+                UnknownChar (CurC);
+            }
             break;
 
         default:

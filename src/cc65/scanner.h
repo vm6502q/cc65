@@ -185,6 +185,9 @@ typedef enum token_t {
 
     /* Quantum operators */
     TOK_GROVER,
+    TOK_GROVER_CALIBRATE,
+    TOK_QUANTUM_ADD,
+    TOK_QUANTUM_SUB,
 } token_t;
 
 
