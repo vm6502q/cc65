@@ -49,7 +49,7 @@ void calibrate_locals(void)
 void calibrate_globals(void)
 {
     int y;
-    y = @[] = grover_m, buffer @[] value;
+    y = (@[] = grover_m, buffer @[] value);
 }
 
 /* General purpose calling convention example, for reference. */
