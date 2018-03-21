@@ -1000,6 +1000,33 @@ void NextToken (void)
             SetTok (TOK_COMP);
             break;
 
+        /* Quantum Operators */
+        case '@':
+            NextChar ();
+            if (CurC == '[') {
+                NextChar ();
+                if (CurC == ']') {
+                    /* Skip any whitespace... */
+                    do {
+                        NextChar ();
+                    } while (IsSpace (CurC));
+                    if (CurC == '=') {
+                        SetTok (TOK_GROVER_CALIBRATE);
+                    } else {
+                        NextTok.Tok = TOK_GROVER;
+                    }
+                } else {
+                    UnknownChar (CurC);
+                }
+            } else if (CurC == '+') {
+                SetTok (TOK_QUANTUM_ADD);
+            } else if (CurC == '-') {
+                SetTok (TOK_QUANTUM_SUB);
+            } else {
+                UnknownChar (CurC);
+            }
+            break;
+
         default:
             UnknownChar (CurC);
 
