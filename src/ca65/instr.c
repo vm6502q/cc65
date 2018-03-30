@@ -955,7 +955,6 @@ static const struct {
         { "DEC",  0x000006C, 0x00, 3, PutAll },
         { "DEX",  0x0000001, 0xca, 0, PutAll },
         { "DEY",  0x0000001, 0x88, 0, PutAll },
-        { "EHX",  0x0000001, 0x0b, 0, PutAll },     /* Q */
         { "EOR",  0x080A26C, 0x40, 0, PutAll },
         { "FTA",  0x0000001, 0x62, 0, PutAll },     /* Q */
         { "FTX",  0x0000001, 0x63, 0, PutAll },     /* Q */
@@ -1000,7 +999,6 @@ static const struct {
 #if 0
 	OPCODE_HAD_A		= 0x02,	// 6502Q: Hadamard Accumulator
 	OPCODE_HAD_X		= 0x03,	// 6502Q: Hadamard IndX
-	OPCODE_EHX		= 0x0b, // 6502Q: "Entangled Hadamard"
 	OPCODE_PAX_A		= 0x12,	// 6502Q: Pauli X on Accumulator
 	OPCODE_PAX_X		= 0x13,	// 6502Q: Pauli X on Immediate
 	OPCODE_HAD_C		= 0x17,	// 6502Q: Hadamard on Carry Flag
